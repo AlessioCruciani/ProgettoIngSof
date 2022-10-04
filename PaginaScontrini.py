@@ -34,7 +34,7 @@ class Ui_PaginaScontrini(object):
 "border-bottom-color: #20730b;\n"
 "td: 100px;\n"
 "\n"
-"")
+"")//da qui in poi set della pagina scontrini
         self.TableScontrini.setObjectName("TableScontrini")
         self.TableScontrini.setColumnCount(4)
         item = QtWidgets.QTableWidgetItem()
@@ -93,7 +93,7 @@ class Ui_PaginaScontrini(object):
 
         self.retranslateUi(PaginaScontrini)              //funzione automatica di PyQt
         QtCore.QMetaObject.connectSlotsByName(PaginaScontrini)
-
+//carica i dati nella tabella
     def caricaDatiScontrini(self):
         mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
         mycursor = mydb.cursor()
@@ -117,7 +117,7 @@ class Ui_PaginaScontrini(object):
             self.TableScontrini.setItem(rigaTabella, 3, QtWidgets.QTableWidgetItem(str(row[3])))
 
             rigaTabella += 1
-
+// carica i dati che rispettano delle specifiche settate nella tabella
     def cercaDatiScontrini(self):
         richiesta = self.lineEdit.text()
         mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
