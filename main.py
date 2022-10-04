@@ -326,7 +326,7 @@ def onClickButtonHomeScontrini():
 
 
 
-app = QApplication([])  //import di PyQt 
+app = QApplication([])  //import di PyQt per far aprire i button
 finestraLogin = QWidget()
 uiLogin = Ui_Login()
 uiLogin.setupUi(finestraLogin)
