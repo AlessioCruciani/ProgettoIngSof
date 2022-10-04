@@ -14,7 +14,7 @@ import datetime
 from datetime import date
 
 
-class Ui_PaginaAggiungiScontrini(object):
+class Ui_PaginaAggiungiScontrini(object): // serve a settare la pagina
     def setupUi(self, PaginaAggiungiOrdini):
         PaginaAggiungiOrdini.setObjectName("PaginaAggiungiOrdini")
         PaginaAggiungiOrdini.resize(840, 571)
@@ -194,7 +194,7 @@ class Ui_PaginaAggiungiScontrini(object):
         self.retranslateUi(PaginaAggiungiOrdini)
         QtCore.QMetaObject.connectSlotsByName(PaginaAggiungiOrdini)
 
-    def retranslateUi(self, PaginaAggiungiOrdini):
+    def retranslateUi(self, PaginaAggiungiOrdini):   //invece di aggiungi Ordine è AggiungiScontrino    
         _translate = QtCore.QCoreApplication.translate
         PaginaAggiungiOrdini.setWindowTitle(_translate("PaginaAggiungiOrdini", "Form"))
         item = self.TableProdottiScontrini.horizontalHeaderItem(0)
@@ -236,11 +236,11 @@ class Ui_PaginaAggiungiScontrini(object):
         idUtilizzatoreStr = str(self.identificatoreUtilizzatore)
 
         queryNuovoScontrino = "INSERT INTO vendita VALUES('', '" + dataOdierna + "','" + orarioAttuale + "', " + idUtilizzatoreStr + ")"
-        mycursor.execute(queryNuovoScontrino)
+        mycursor.execute(queryNuovoScontrino) //quando si crea un nuovo scontrino si inserisce l'id dell'utilizatore che lo fa e si stampa l'id, il giorno e l'ora
 
-        mydb.commit()
+        mydb.commit() //salva lo scontrino nel database
 
-        queryUltimoCodiceScontrino = "SELECT MAX(vendita.IDVendita) FROM vendita"
+        queryUltimoCodiceScontrino = "SELECT MAX(vendita.IDVendita) FROM vendita" //l'id è INCREMENTALE
         mycursor.execute(queryUltimoCodiceScontrino)
         myresult = mycursor.fetchone()
 
@@ -258,7 +258,7 @@ class Ui_PaginaAggiungiScontrini(object):
 
         codiceProdotto = self.lECodiceProdotto.text()
         quantita = self.lEQuantita.text()
-
+// Sugli ordini ci sono i codici dei prodotti che sono stati acquistati (PRODOTTI ACQUISTATI), tali codici si ritrovano nella tabella PRODOTTI mentre il numero degli ordini su quella ORDINI. L'inner join serve ad unire la tabella di prodotto acquistato e di prodotto per farle combaciare.
         queryControllaQuantita = "SELECT SUM(prodottoacquistato.QuantitaAcquistata) FROM ordine INNER JOIN (prodotto INNER JOIN prodottoacquistato ON prodotto.IDProdotto = prodottoacquistato.IDProdotto) ON ordine.IDOrdine = prodottoacquistato.IDOrdine WHERE (ordine.Consegnato = 'true' AND prodotto.IDProdotto = '" + codiceProdotto + "')"
         mycursor.execute(queryControllaQuantita)
         myresult = mycursor.fetchall()
@@ -272,7 +272,7 @@ class Ui_PaginaAggiungiScontrini(object):
         risultatoQueryQuantitaVenduta = mycursor.fetchall()
 
         quantitaVenduta = 0
-
+// leggiamo la riga corrispondente alla quantità venduta al cliente, se questa è diversa da 0 aggiorniamo il magazzino e le tabelle sulla quantità residua del prodotto in questione, altrimenti tutto rimane invariato
         for riga in risultatoQueryQuantitaVenduta:
             quantitaVenduta = riga[0]
 
@@ -285,20 +285,20 @@ class Ui_PaginaAggiungiScontrini(object):
         if int(quantitaResidua) >= int(quantita):
             self.aggiungiProdottoInScontrino(quantita,codiceProdotto)
             self.aggiornaDataUltimaVendita(codiceProdotto)
-
+//sef serve a modificare le variabili della classe in questione
     def aggiungiProdottoInScontrino(self, quantitaVenduta, codiceProdotto):
 
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
-        codiceScontrino = str(self.labelCodiceOrdine.text())
+        codiceScontrino = str(self.labelCodiceOrdine.text()) //labelCodiceScontrino
 
         queryPrezzoVendita = "SELECT prodotto.PrezzoVendita FROM prodotto WHERE prodotto.IDProdotto = '" + codiceProdotto + "'"
         mycursor.execute(queryPrezzoVendita)
         myresult = mycursor.fetchall()
 
         prezzoVendita = 0
-
+//quando un prodotto viene acquistato se ne controlla il prezzo sulla tabella PRODOTTI dopodichè in vase alla quantità acquistata si fanno i calcoli e si aggiunge il risultato sullo scontrino
         for row in myresult:
             prezzoVendita = row[0]
 
@@ -357,7 +357,7 @@ class Ui_PaginaAggiungiScontrini(object):
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
-        codiceScontrino = str(self.labelCodiceOrdine.text())
+        codiceScontrino = str(self.labelCodiceOrdine.text()) //codiceScontrino
         queryRimuoviProdottiScontrino = "DELETE FROM prodottovenduto WHERE prodottovenduto.IDVendita = " + codiceScontrino
         mycursor.execute(queryRimuoviProdottiScontrino)
         mydb.commit()
