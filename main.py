@@ -4,7 +4,7 @@ import PyQt5
 from PyQt5.QtWidgets import QApplication, QWidget, QDialog, QGraphicsTextItem
 
 from LoginFinito import Ui_Login
-from PaginaAggiungiPersonale import Ui_AggiungiPersonale
+from PaginaAggiungiPersonale import Ui_AggiungiPersonale  //Ui connessione alla "pagina"
 from PaginaAggiungiPrenotazioni import Ui_AggiungiPrenotazione
 from PaginaAggiungiSconti import Ui_PaginaAggiungiSconti
 from PaginaErrore import Ui_Errore
@@ -24,8 +24,8 @@ from PaginaProdotti import Ui_PaginaProdotti
 from PaginaStatistiche import Ui_Statistiche
 from PaginaModificaPermessi import Ui_PaginaModificaPermessi
 
-mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
-mycursor = mydb.cursor()
+mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova") 
+mycursor = mydb.cursor() 
 
 def controlla():
     myresult = 0
@@ -326,7 +326,7 @@ def onClickButtonHomeScontrini():
 
 
 
-app = QApplication([])
+app = QApplication([])  //import di PyQt 
 finestraLogin = QWidget()
 uiLogin = Ui_Login()
 uiLogin.setupUi(finestraLogin)
