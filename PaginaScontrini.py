@@ -86,12 +86,12 @@ class Ui_PaginaScontrini(object):
 "text-align: center;")
         self.lineEdit.setObjectName("lineEdit")
 
-        self.TableScontrini.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.TableScontrini.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)   //serve per non modificare i campi di una tabella 
 
         self.caricaDatiScontrini()
         self.ButtonCercaScontrini.clicked.connect(self.cercaDatiScontrini)
 
-        self.retranslateUi(PaginaScontrini)
+        self.retranslateUi(PaginaScontrini)              //funzione automatica di PyQt
         QtCore.QMetaObject.connectSlotsByName(PaginaScontrini)
 
     def caricaDatiScontrini(self):
