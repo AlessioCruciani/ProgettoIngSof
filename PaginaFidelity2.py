@@ -57,9 +57,9 @@ class Ui_PaginaFidelity(object):
 "border: 2px solid black;\n"
 "border-radius: 10px;\n"
 "border-color: #20730b;")
-        self.ButtonAggiungi.setText("")
+        self.ButtonAggiungi.setText("") //SET DEL BOTTONE AGGIUNGI FIDELITY
         self.ButtonAggiungi.setObjectName("ButtonAggiungi")
-        self.ButtonCerca = QtWidgets.QPushButton(PaginaFidelity)
+        self.ButtonCerca = QtWidgets.QPushButton(PaginaFidelity) // SET DEL BOTTONE CERCA FIDELITY
         self.ButtonCerca.setGeometry(QtCore.QRect(500, 160, 220, 40))
         self.ButtonCerca.setStyleSheet("background-position: center;\n"
 "background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiFidelity/ButtonCercaFidelity.png);\n"
@@ -68,7 +68,7 @@ class Ui_PaginaFidelity(object):
 "border-color: #20730b;")
         self.ButtonCerca.setText("")
         self.ButtonCerca.setObjectName("ButtonCerca")
-        self.ButtonHome = QtWidgets.QPushButton(PaginaFidelity)
+        self.ButtonHome = QtWidgets.QPushButton(PaginaFidelity) //SET DEL BOTTONE HOME
         self.ButtonHome.setGeometry(QtCore.QRect(500, 500, 220, 40))
         self.ButtonHome.setStyleSheet("background-position: center;\n"
 "background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiFidelity/ButtonHome.png);\n"
@@ -106,7 +106,7 @@ class Ui_PaginaFidelity(object):
 
 
 
-    def cercaFidelityCard(self):
+    def cercaFidelityCard(self): //ENTRIAMO NEL DTABASE ED IN BASE AL NOMEE COGNOME POSSIAMO CERCARE LA FIDELITY DESIDERATA
         richiesta = self.lineEdit.text()
         mydb = mysql.connector.connect(
             host="localhost",
@@ -119,7 +119,7 @@ class Ui_PaginaFidelity(object):
         queryRicercaFidelity = "SELECT * FROM fidelitycard WHERE fidelitycard.Nome = '" + richiesta + "' OR fidelitycard.Cognome = '" + richiesta +"' OR fidelitycard.IdFidelityCard ='" + richiesta + "'"
 
         mycursor.execute(queryRicercaFidelity)
-        risultatoRicercaFidelity = mycursor.fetchall()
+        risultatoRicercaFidelity = mycursor.fetchall() //I/IL RISULTATO/I DELLA RICERCA VENGONO INSERITI NELLA TABELLA
 
         rigaTabella = 0
         righeTotali = 0
@@ -140,7 +140,7 @@ class Ui_PaginaFidelity(object):
 
             rigaTabella += 1
 
-    def caricaDatiFidelity(self):
+    def caricaDatiFidelity(self): //ENTRIAMO NEL DATABASE E CARICHIAMO TUTTI I DATI RELATIVI ALLA SEZIONE FIDELITY CARD
 
         mydb = mysql.connector.connect(
             host="localhost",
@@ -162,7 +162,7 @@ class Ui_PaginaFidelity(object):
 
         self.TableFidelity.setRowCount(righeTotali)
 
-        for row in risultatoQueryFidelity:
+        for row in risultatoQueryFidelity: //RIEMPIAMO LA TABELLA
             self.TableFidelity.verticalHeader().setVisible(bool(0))
             self.TableFidelity.setItem(rigaTabella, 0, QtWidgets.QTableWidgetItem(str(row[0])))
             self.TableFidelity.setItem(rigaTabella, 1, QtWidgets.QTableWidgetItem(row[1]))
