@@ -51,9 +51,9 @@ class Ui_PaginaOrdini(object):
 "border: 2px solid black;\n"
 "border-radius: 10px;\n"
 "border-color: #20730b;")
-        self.ButtonAggiungi.setText("")
+        self.ButtonAggiungi.setText("") //BOTTONE AGGIUNGI
         self.ButtonAggiungi.setObjectName("ButtonAggiungi")
-        self.ButtonCerca = QtWidgets.QPushButton(PaginaOrdini)
+        self.ButtonCerca = QtWidgets.QPushButton(PaginaOrdini) //BOTTONE CERCA
         self.ButtonCerca.setGeometry(QtCore.QRect(500, 160, 220, 40))
         self.ButtonCerca.setStyleSheet("background-position: center;\n"
 "background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiOrdini/ButtonCercaOrdini.png);\n"
@@ -62,7 +62,7 @@ class Ui_PaginaOrdini(object):
 "border-color: #20730b;")
         self.ButtonCerca.setText("")
         self.ButtonCerca.setObjectName("ButtonCerca")
-        self.ButtonHome = QtWidgets.QPushButton(PaginaOrdini)
+        self.ButtonHome = QtWidgets.QPushButton(PaginaOrdini) //HOME
         self.ButtonHome.setGeometry(QtCore.QRect(540, 500, 220, 40))
         self.ButtonHome.setStyleSheet("background-position: center;\n"
 "background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiOrdini/ButtonHome.png);\n"
@@ -71,7 +71,7 @@ class Ui_PaginaOrdini(object):
 "border-color: #20730b;")
         self.ButtonHome.setText("")
         self.ButtonHome.setObjectName("ButtonHome")
-        self.ButtonModifica = QtWidgets.QPushButton(PaginaOrdini)
+        self.ButtonModifica = QtWidgets.QPushButton(PaginaOrdini) //MODIFICA STATO ORDINE
         self.ButtonModifica.setGeometry(QtCore.QRect(300, 500, 220, 40))
         self.ButtonModifica.setStyleSheet("background-position: center;\n"
 "background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiOrdini/ButtonModificaStatoOrdini.png);\n"
@@ -101,7 +101,7 @@ class Ui_PaginaOrdini(object):
         self.retranslateUi(PaginaOrdini)
         QtCore.QMetaObject.connectSlotsByName(PaginaOrdini)
 
-    def cercaDatiOrdine(self):
+    def cercaDatiOrdine(self): //ENTRIAMO NEL DATABASE E CARICHIAMO I DATI DALLA SEZIONE ORDINI SECONDO DETERMINATE CARATTERISTICHE, QUELLI CARICATI VERRANO INSERITI NELLA TABELLA
         richiesta = self.lineEdit.text()
         mydb = mysql.connector.connect(
             host="localhost",
@@ -134,7 +134,7 @@ class Ui_PaginaOrdini(object):
 
             rigaTabella += 1
 
-    def caricaDatiOrdine(self):
+    def caricaDatiOrdine(self):  //ENTRIAMO NEL DATABASE E CARICHIAMO I DATI DALLA SEZIONE ORDINI, QUELLI CARICATI VERRANO INSERITI NELLA TABELLA
         mydb = mysql.connector.connect(
             host="localhost",
             user="alessio",
