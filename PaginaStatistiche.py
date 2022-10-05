@@ -31,7 +31,7 @@ class Ui_Statistiche(object):
 "border: 2px solid black;\n"
 "border-radius: 10px;\n"
 "border-color: #20730b;")
-        self.ButtonHome.setText("")
+        self.ButtonHome.setText("") //BOTTONE HOME
         self.ButtonHome.setObjectName("ButtonHome")
         self.frame = QtWidgets.QFrame(PaginaStatistiche)
         self.frame.setGeometry(QtCore.QRect(60, 140, 341, 241))
@@ -95,7 +95,7 @@ class Ui_Statistiche(object):
         self.label_2.setText(_translate("PaginaStatistiche", "BILANCIO DEL MESE CORRENTE"))
 
 
-class Canvas_grafica(FigureCanvas):
+class Canvas_grafica(FigureCanvas): 
     def __init__(self, parent=None):
         self.fig, self.ax = plt.subplots(1, dpi=75, figsize=(5, 5), sharey=True, facecolor='white')
         super().__init__(self.fig)
@@ -115,7 +115,7 @@ class Canvas_grafica(FigureCanvas):
 
 
 
-    def vettoreDate(self):
+    def vettoreDate(self): //SERVE A METTERE I DATI IN ORDINE SETTIMANALE (DALLA DATA ODIERNA TORNIAMO INDIETRO DI MASSIKMO 6 GIORNI
         # sarebbe nombres
         setteGiorni = []
         datadainserire = date.today() + datetime.timedelta(days=-6)
@@ -135,12 +135,12 @@ class Canvas_grafica(FigureCanvas):
 
         return setteGiorni
 
-    def vettoreValori(self):
+    def vettoreValori(self): //APRIAMO IL DATABASE
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
         setteValori = []
         for i in range (6, -1, -1):
-            valore = -i
+            valore = -i 
             dataquery = (date.today() + datetime.timedelta(days=valore)).isoformat()
             queryValore = "SELECT SUM(prodottovenduto.QuantitaVenduta) FROM prodottovenduto INNER JOIN vendita ON prodottovenduto.IDVendita=vendita.IDVendita WHERE vendita.DataVendita = '"+ dataquery +"'"
             mycursor.execute(queryValore)
