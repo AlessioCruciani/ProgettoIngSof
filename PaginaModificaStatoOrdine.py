@@ -67,7 +67,7 @@ class Ui_PaginaModificaStatoOrdini(object):
         PaginaModificaStatoOrdini.setWindowTitle(_translate("PaginaModificaStatoOrdini", "Form"))
         self.labelDNM.setText(_translate("PaginaModificaStatoOrdini", "INSERISCI IL CODICE DELL\'ORDINE DI CUI MODIFICARE LO STATO:"))
 
-    def modificaStatoOrdine(self):
+    def modificaStatoOrdine(self): // ENTRO NEL DATABASE INSERSCO IL CODICE DELL'ORDINE DA MODIFICARE E AGGIORNIAMO LO STATO DELL'ORDINE RELATIVO
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
