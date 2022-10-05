@@ -20,7 +20,7 @@ class Ui_AggiungiPersonale(object):
                 font.setPointSize(14)
                 AggiungiPersonale.setFont(font)
                 AggiungiPersonale.setStyleSheet("background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiPersonale/SfondoAggiungiPersonale.png);")
-                self.labelNome = QtWidgets.QLabel(AggiungiPersonale)
+                self.labelNome = QtWidgets.QLabel(AggiungiPersonale) //INDICA IL RIQUADRO DI INSERIMENTO DEL NOME (LO INTESTA SOLO)
                 self.labelNome.setGeometry(QtCore.QRect(40, 160, 161, 40))
                 self.labelNome.setStyleSheet("background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiPersonale/NomeFidelity.png);\n"
                                              "background-position: center;\n"
@@ -29,7 +29,7 @@ class Ui_AggiungiPersonale(object):
                                              "border-color: #20730b;")
                 self.labelNome.setText("")
                 self.labelNome.setObjectName("labelNome")
-                self.lineEditNome = QtWidgets.QLineEdit(AggiungiPersonale)
+                self.lineEditNome = QtWidgets.QLineEdit(AggiungiPersonale) // CI PERMETTE DI INSERIRE IL COME DA AGGIUNGERE (LineEdit)
                 self.lineEditNome.setGeometry(QtCore.QRect(220, 160, 181, 40))
                 font = QtGui.QFont()
                 font.setFamily("OpenSymbol")
@@ -111,7 +111,7 @@ class Ui_AggiungiPersonale(object):
                                                              "border: 2px solid black;\n"
                                                              "border-radius: 10px;\n"
                                                              "border-color: #20730b;")
-                self.buttonConfermaInserimento.setText("")
+                self.buttonConfermaInserimento.setText("") //CREIAMO SOLO IL BOTTONE
                 self.buttonConfermaInserimento.setObjectName("buttonConfermaInserimento")
                 self.labelStipendio = QtWidgets.QLabel(AggiungiPersonale)
                 self.labelStipendio.setGeometry(QtCore.QRect(440, 220, 161, 40))
@@ -216,7 +216,7 @@ class Ui_AggiungiPersonale(object):
                 _translate = QtCore.QCoreApplication.translate
                 AggiungiPersonale.setWindowTitle(_translate("AggiungiPersonale", "Form"))
 
-        def creaNuovoPersonale(self):
+        def creaNuovoPersonale(self): //QUELLA DI PRIMA è LA PARTE GRAFICA, INVECE QUESTA è DI IMPLEMENTAZIONE VERA E PROPRIA
             mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
             mycursor = mydb.cursor()
 
