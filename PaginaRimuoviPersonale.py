@@ -23,7 +23,7 @@ class Ui_PaginaRimuoviDipendenti(object):
                                                         "border: 2px solid black;\n"
                                                         "border-radius: 10px;\n"
                                                         "border-color: #20730b;")
-        self.ButtonConfermaModificaOrdine.setText("")
+        self.ButtonConfermaModificaOrdine.setText("") //DEFINIAMO IL BOTTONE DI CONFERMA ELIMINAZIONE
         self.ButtonConfermaModificaOrdine.setObjectName("ButtonConfermaModificaOrdine")
         self.ButtonAnnullaModificaPersonale = QtWidgets.QPushButton(PaginaRimuoviDipendenti)
         self.ButtonAnnullaModificaPersonale.setGeometry(QtCore.QRect(300, 500, 220, 40))
@@ -32,7 +32,7 @@ class Ui_PaginaRimuoviDipendenti(object):
                                                           "border: 2px solid black;\n"
                                                           "border-radius: 10px;\n"
                                                           "border-color: #20730b;")
-        self.ButtonAnnullaModificaPersonale.setText("")
+        self.ButtonAnnullaModificaPersonale.setText("") //DEFINIAMO IL BOTTONE DI ANNULLA ELIMINAZIONE  
         self.ButtonAnnullaModificaPersonale.setObjectName("ButtonAnnullaModificaPersonale")
         self.lECodicePersonale = QtWidgets.QLineEdit(PaginaRimuoviDipendenti)
         self.lECodicePersonale.setGeometry(QtCore.QRect(140, 180, 581, 41))
@@ -65,7 +65,7 @@ class Ui_PaginaRimuoviDipendenti(object):
         PaginaRimuoviDipendenti.setWindowTitle(_translate("PaginaRimuoviDipendenti", "Form"))
         self.labelDNM.setText(_translate("PaginaRimuoviDipendenti", "INSERISCI IL CODICE DEL DIPENDENTE  DA RIMUOVERE:"))
 
-    def rimuoviPersonale(self):
+    def rimuoviPersonale(self): //SI CERCA L'ID DELL'UTILIZZATORE DA RIMUOVERE NEL DATABASE E LO SI CANCELLA    
         codicePersonale = self.lECodicePersonale.text()
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
