@@ -56,7 +56,7 @@ class Ui_PaginaAggiungiOrdini(object):
 "border: 2px solid black;\n"
 "border-radius: 10px;\n"
 "border-color: #20730b;")
-        self.ButtonAggiungiProdotto.setText("")
+        self.ButtonAggiungiProdotto.setText("") //BUTTON AGGIUNGI PRODOTTO
         self.ButtonAggiungiProdotto.setObjectName("ButtonAggiungiProdotto")
         self.ButtonConfermaOrdine = QtWidgets.QPushButton(PaginaAggiungiOrdini)
         self.ButtonConfermaOrdine.setGeometry(QtCore.QRect(540, 500, 220, 40))
@@ -65,9 +65,9 @@ class Ui_PaginaAggiungiOrdini(object):
 "border: 2px solid black;\n"
 "border-radius: 10px;\n"
 "border-color: #20730b;")
-        self.ButtonConfermaOrdine.setText("")
+        self.ButtonConfermaOrdine.setText("") //BUTTON CONFERMA ORDINE
         self.ButtonConfermaOrdine.setObjectName("ButtonConfermaOrdine")
-        self.ButtonAnnullaOrdine = QtWidgets.QPushButton(PaginaAggiungiOrdini)
+        self.ButtonAnnullaOrdine = QtWidgets.QPushButton(PaginaAggiungiOrdini) // BUTTON ANULLA ORDINE
         self.ButtonAnnullaOrdine.setGeometry(QtCore.QRect(300, 500, 220, 40))
         self.ButtonAnnullaOrdine.setStyleSheet("background-position: center;\n"
 "background-image: url(C:/Users/aless/Desktop/uiFILEs/ImmaginiOrdini/ButtonAnnullaOrdine.png);\n"
@@ -223,7 +223,7 @@ class Ui_PaginaAggiungiOrdini(object):
     def setIdentificatoreUtilizzatore(self, codiceUtilizzatore):
         self.identificatoreUtilizzatore = codiceUtilizzatore
 
-    def creaNuovoOrdine(self):
+    def creaNuovoOrdine(self): // CI CONNETTIAMO AL DATABASE, AGGIUNGIAMO L'ID DELL'UTILIZZATPRE, E FACCIAMO L'ORDINE
 
         mydb = mysql.connector.connect(
             host="localhost",
@@ -234,7 +234,7 @@ class Ui_PaginaAggiungiOrdini(object):
 
         mycursor = mydb.cursor()
 
-        dataOdierna = date.today()
+        dataOdierna = date.today() // IL TEMPO DI CONSEGNA STIMATO è 3 GIORNI LAVORATIVI
         dataFutura = date.today() + datetime.timedelta(days=3)
 
         if dataFutura.isoweekday() == 6:
@@ -253,7 +253,7 @@ class Ui_PaginaAggiungiOrdini(object):
 
         mydb.commit()
 
-        queryUltimoCodiceOrdine = "SELECT MAX(ordine.IDOrdine) FROM ordine"
+        queryUltimoCodiceOrdine = "SELECT MAX(ordine.IDOrdine) FROM ordine" //NUMERO DEGLI ORDINI è INCREMENTALE
         mycursor.execute(queryUltimoCodiceOrdine)
         myresult = mycursor.fetchone()
 
@@ -265,7 +265,7 @@ class Ui_PaginaAggiungiOrdini(object):
         self.labelCodiceOrdine.setText(str(maxIdOrdine))
         #self.ButtonAggiungiProdotto.clicked.connect(self.aggiungiNuovoProdotto)
 
-    def aggiungiNuovoProdotto(self):
+    def aggiungiNuovoProdotto(self): // CI LEGHIAMO AL DATABASE DIE PRODOTTI E AGGIUNGIAMO UN NUOVO CODICE CON NOME, PREZZO E QUANTITà ACQUISTATA PER IL PRODOTTO DA COMPRARE SE NON ERA PRESENTE NEL MAGAZZINO
         mydb = mysql.connector.connect(
             host="localhost",
             user="alessio",
@@ -280,14 +280,14 @@ class Ui_PaginaAggiungiOrdini(object):
         prezzoAcquisto = self.lEPrezzoAcquisto.text()
         quantitaAcquistata = self.lEQuantita.text()
 
-        queryProdottoEsistente = "SELECT * FROM prodotto WHERE prodotto.IDProdotto = " + codiceProdotto
+        queryProdottoEsistente = "SELECT * FROM prodotto WHERE prodotto.IDProdotto = " + codiceProdotto //CONTROLLA CHE IL PRODOTTO SIA GIà NEL DATABASE
         mycursor.execute(queryProdottoEsistente)
         myresult = mycursor.fetchall()
 
         contaProdotti = 0
 
         for row in myresult:
-            contaProdotti += 1
+            contaProdotti += 1 
 
         if contaProdotti != 0:
             queryProdottoEsistent = "SELECT prodotto.PrezzoAcquisto FROM prodotto WHERE prodotto.IDProdotto = " + codiceProdotto
@@ -303,7 +303,7 @@ class Ui_PaginaAggiungiOrdini(object):
 
             self.aggiungiProdottoInOrdine(prezzoAcquisto, quantitaAcquistata, codiceProdotto)
         else:
-            prezzoVendita = (float(prezzoAcquisto) * 50) / 100 + float(prezzoAcquisto)
+            prezzoVendita = (float(prezzoAcquisto) * 50) / 100 + float(prezzoAcquisto) //PREZZO DI VENDITA
 
             queryAggiungiProdotto = "INSERT INTO prodotto VALUES(" + codiceProdotto + " , '" + nomeProdotto + "' , " + str(prezzoAcquisto) + " , " + str(prezzoVendita) + " , 'null' , 1 )"
             mycursor.execute(queryAggiungiProdotto)
@@ -311,7 +311,7 @@ class Ui_PaginaAggiungiOrdini(object):
 
             self.aggiungiProdottoInOrdine(prezzoAcquisto, quantitaAcquistata, codiceProdotto)
 
-    def aggiungiProdottoInOrdine(self, prezzoAcquisto, quantitaAcquistata, codiceProdotto):
+    def aggiungiProdottoInOrdine(self, prezzoAcquisto, quantitaAcquistata, codiceProdotto): // SIAMO NEL DATABASE DEGLI ORDINI E A QUELLO FATTO AGGIUNGIAMO IL PRODOTTO DESIDERATO CON CODICE PRODOTTO E QUANTITà ACQUISTATA
 
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
@@ -325,7 +325,7 @@ class Ui_PaginaAggiungiOrdini(object):
         mydb.commit()
         self.caricaDatiProdotto(codiceOrdine)
 
-    def caricaDatiProdotto(self, codiceOrdine):
+    def caricaDatiProdotto(self, codiceOrdine): // ENTRO NEL DATABASE PRENDO I DATI E LI PASSO SULLA TABELLA 
         mydb = mysql.connector.connect(
             host="localhost",
             user="alessio",
@@ -356,7 +356,7 @@ class Ui_PaginaAggiungiOrdini(object):
 
             rigaTabella += 1
 
-    def annullaOrdine(self):
+    def annullaOrdine(self): 
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
