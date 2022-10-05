@@ -112,7 +112,7 @@ class Ui_PaginaPersonale(object):
                                              "border-color: #20730b;\n"
                                              "text-align: center;")
         self.lineEditPersonale.setObjectName("lineEditPersonale")
-
+// serve a non far modificare i dati nella tabella
         self.TablePersonale.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
         self.caricaDatiPersonale()
@@ -143,7 +143,7 @@ class Ui_PaginaPersonale(object):
         item.setText(_translate("PaginaPersonale", "Email"))
         item = self.TablePersonale.horizontalHeaderItem(8)
         item.setText(_translate("PaginaPersonale", "Telefono"))
-
+//ci leghiamo al database e carica i dati di tutto coloro che hanno l'attributo impiegato settato a true
     def caricaDatiPersonale(self):
         mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
         mycursor = mydb.cursor()
@@ -153,7 +153,7 @@ class Ui_PaginaPersonale(object):
         risultatoQueryPersonale = mycursor.fetchall()
         rigaTabella = 0
         righeTotali = 0
-
+// i risultati dati da questo primo caricamento vengono inseriti nella tabella in Personale 
         for row in risultatoQueryPersonale:
             righeTotali += 1
 
@@ -172,7 +172,7 @@ class Ui_PaginaPersonale(object):
             self.TablePersonale.setItem(rigaTabella, 8, QtWidgets.QTableWidgetItem(str(row[8])))
 
             rigaTabella += 1
-
+//ci colleghiamo al database e questo ci caricherà i dati di tutti gli impiegati (con il valore impiegato settato a true) che corrispondono a determinate caratteristoche che gli poniamo
     def cercaDatiPersonale(self):
         richiesta = self.lineEditPersonale.text()
         mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
@@ -205,7 +205,7 @@ class Ui_PaginaPersonale(object):
 
     def setIdentificatoreUtilizzatore(self, CodiceUtilizzatore):
         self.IdentificatoreUtilizzatore = CodiceUtilizzatore
-
+//ci leghiamo al database ed in base all'id dell'utilizzatore colòlegato vediamo se ha i permessi per poter accedere a determinate funioni
     def controllaPermessiUtilizzatore(self):
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
