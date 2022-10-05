@@ -25,7 +25,7 @@ class Ui_PaginaModificaPermessi(object):
                                                         "border: 2px solid black;\n"
                                                         "border-radius: 10px;\n"
                                                         "border-color: #20730b;")
-        self.ButtonConfermaModifica.setText("")
+        self.ButtonConfermaModifica.setText("") // SET PULSANTE DI CONFERMA DELLA MODIFICA
         self.ButtonConfermaModifica.setObjectName("ButtonConfermaModificaOrdine")
         self.ButtonAnnullaModifica = QtWidgets.QPushButton(PaginaModificaPermessi)
         self.ButtonAnnullaModifica.setGeometry(QtCore.QRect(300, 500, 220, 40))
@@ -34,7 +34,7 @@ class Ui_PaginaModificaPermessi(object):
                                                        "border: 2px solid black;\n"
                                                        "border-radius: 10px;\n"
                                                        "border-color: #20730b;")
-        self.ButtonAnnullaModifica.setText("")
+        self.ButtonAnnullaModifica.setText("") //SET DEL PULSANTE DI ANNULLA DELLA MODIFCA
         self.ButtonAnnullaModifica.setObjectName("ButtonAnnullaModificaOrdine")
         self.lEImportoStipendio = QtWidgets.QLineEdit(PaginaModificaPermessi)
         self.lEImportoStipendio.setGeometry(QtCore.QRect(140, 340, 581, 41))
@@ -116,7 +116,7 @@ class Ui_PaginaModificaPermessi(object):
         self.labelDNMstipendio.setText(_translate("PaginaModificaStatoOrdini", "INSERISCI L\'IMPORTO DELLO STIPENDIO DA ATTRIBUIRE AL DIPENDENTE:"))
         self.labelDNMcodiceDip.setText(_translate("PaginaModificaStatoOrdini", "INSERISCI IL CODICE DEL DIPENDENTE DA PROMUOVERE:"))
 
-    def aggiornaPermessiDipendenti(self):
+    def aggiornaPermessiDipendenti(self): // CERCHIAMO IL CODICE DEL DIPENDENTE NEL DATABASE E UNA VOLTA TROVATO NE AGGIORNIAMO IL BOX DI PERMESSI E LO SRIPENDIO
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
