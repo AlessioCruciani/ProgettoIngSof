@@ -129,7 +129,7 @@ class Ui_AggiungiFidelity(object):
     def setIdentificatoreUtilizzatore(self, codiceUtilizzatore):
         self.identificatoreUtilizzatore = codiceUtilizzatore
 
-    def creaNuovaFidelity(self):
+    def creaNuovaFidelity(self): //PASSIAMO NOME, COGNOME,EMAIL,TELEFONO, UTILIZZATORE PER ACCEDERE AL DATABASE
         nome = self.lineEditNome.text()
         cognome = self.lineEditCognome.text()
         email = self.lineEditEmail.text()
