@@ -164,7 +164,8 @@ class Ui_HomePage(object):
                         self.lista.setVisible(bool(0))
                 else:
                         self.lista.setVisible(bool(1))
-
+                        
+//NOTIFICA I DATI DI UN PRODOTTO INVENDUTO E NE INDICA LA DATA ODIERNA E LA DATA DELL'ULTIMA VENDITA
         def caricaNotifiche(self):
                 mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
                 mycursor = mydb.cursor()
@@ -190,6 +191,7 @@ class Ui_HomePage(object):
 
                 self.caricaConsigliSconto(risultatoQueryProdottiInvenduti)
 
+                //SERVE A CONSIGLIARE LA PERCENTUALE DI SCONTO DA APPLICARE AD UN PRODOTTO INVENDUTO
         def caricaConsigliSconto(self, lista):
                 listaConsigli = []
                 for row in lista:
