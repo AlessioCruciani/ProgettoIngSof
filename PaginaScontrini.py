@@ -117,7 +117,7 @@ class Ui_PaginaScontrini(object):
             self.TableScontrini.setItem(rigaTabella, 3, QtWidgets.QTableWidgetItem(str(row[3])))
 
             rigaTabella += 1
-// carica i dati che rispettano delle specifiche settate nella tabella
+// CARICA I DATI CHE RISPETTANO DELLE SPECIFICHE SETTATE NELLA TABELLA
     def cercaDatiScontrini(self):
         richiesta = self.lineEdit.text()
         mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
