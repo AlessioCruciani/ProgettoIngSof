@@ -129,7 +129,7 @@ class Ui_PaginaMagazzino(object):
 
             rigaTabella += 1
 
-    def cercaDatiMagazzino(self):
+    def cercaDatiMagazzino(self):     // CERCA NEL DATABASE I DATI DI UN PRODOTTO IN MAGAZZINO(ID, NOME, PREZZO DI ACQUISTO, PREZZO DI VENDITA)                                                                                      
         richiesta = self.lineEdit.text()
         mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
 
