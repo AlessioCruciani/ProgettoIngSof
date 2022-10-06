@@ -236,9 +236,9 @@ class Ui_PaginaAggiungiScontrini(object): // serve a settare la pagina
         idUtilizzatoreStr = str(self.identificatoreUtilizzatore)
 
         queryNuovoScontrino = "INSERT INTO vendita VALUES('', '" + dataOdierna + "','" + orarioAttuale + "', " + idUtilizzatoreStr + ")"
-        mycursor.execute(queryNuovoScontrino) //quando si crea un nuovo scontrino si inserisce l'id dell'utilizatore che lo fa e si stampa l'id, il giorno e l'ora
+        mycursor.execute(queryNuovoScontrino)  //QUANDO SI CREA UN NUOVO SCONTRINO SI INSERISCE L'ID DELL'UTILIZZATORE CHE LO FA E SI STAMPA L'ID, IL GIORNO E L'ORA
 
-        mydb.commit() //salva lo scontrino nel database
+        mydb.commit()           //SALVA LO SCONTRINO NEL DATABASE
 
         queryUltimoCodiceScontrino = "SELECT MAX(vendita.IDVendita) FROM vendita" //l'id è INCREMENTALE
         mycursor.execute(queryUltimoCodiceScontrino)
