@@ -162,7 +162,7 @@ class Ui_AggiungiPrenotazione(object):
         def setIdentificatoreUtilizzatore(self, codiceUtilizzatore):
                 self.identificatoreUtilizzatore = codiceUtilizzatore
 
-        def creaNuovaPrenotazione(self):   //passa i dati per creare una nuova prenotazione (nome, cognome, email, data e ora) e gli inserisce in una stringa
+        def creaNuovaPrenotazione(self):   //PASSA I DATI PER CREARE UNA NUOVA PRENOTAZIONE (NOME, COGNOME, EMAIL, DATA E ORA) E GLI INSERISCE IN UNA STRINGA
                 nome = self.lineEditNome.text()
                 cognome = self.lineEditCognome.text()
                 email = self.lineEditEmail.text()
