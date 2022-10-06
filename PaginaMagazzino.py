@@ -76,7 +76,7 @@ class Ui_PaginaMagazzino(object):
 "text-align: center;")
         self.lineEdit.setObjectName("lineEdit")
 
-        self.TableMagazzino.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)   //serve per non modificare i campi di una tabella 
+        self.TableMagazzino.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)   //serve a non modificare i campi di una tabella 
 
         self.caricaDatiMagazzino()
         self.ButtonCerca.clicked.connect(self.cercaDatiMagazzino)
