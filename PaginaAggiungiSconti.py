@@ -90,7 +90,7 @@ class Ui_PaginaAggiungiSconti(object):
         self.labelDNMcodiceProdotto.setText(_translate("PaginaAggiungiSconti", "CODICE PRODOTTO"))
         self.labelDNM_2.setText(_translate("PaginaAggiungiSconti", "PERCENTUALE SCONTO"))
 
-    def creaSconto(self):
+    def creaSconto(self):    //RICERCA LA PERCENTUALE DI SCONTO E IN CASO DI ASSENZA, LA AGGIORNA SELEZIONANDO UN NUOVO VALORE DI PERCENTUALE 
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
