@@ -113,7 +113,7 @@ class Ui_PaginaProdotti(object):
         item = self.TableProdototti.horizontalHeaderItem(5)
         item.setText(_translate("PaginaProdotti", "Percentuale Sconto"))
 
-    def caricaDatiProdotti(self):
+    def caricaDatiProdotti(self):   //CARICA I DATI DI UN PRODOTTO ( ID, NOME, PREZZO DI ACQUISTO, PREZZO DI VENDITA, DATA ULTIMA VENDITA, PERCENTUALE SCONTO) NEL DATABASE
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
@@ -139,8 +139,8 @@ class Ui_PaginaProdotti(object):
 
             rigaTabella += 1
 
-
-    def cercaDatiProdotto(self):
+//CERCA I DATI DI UN PRODOTTO ALL'INTERNO DEL DATABASE CREATO IN PRECEDENZA
+    def cercaDatiProdotto(self):   
         richiesta = self.lineEdit.text()
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
@@ -170,6 +170,7 @@ class Ui_PaginaProdotti(object):
     def setIdentificatoreUtilizzatore(self, codiceUtilizzatore):
         self.IdentificatoreUtilizzatore = codiceUtilizzatore
 
+        //VISUALIZZA I PERMESSI DELL'UTILIZZATORE E LI SETTA AL LIVELLO MEDIO O ALTO
     def controllaPermessiUtilizzatore(self):
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
