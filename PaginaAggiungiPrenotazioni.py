@@ -153,7 +153,7 @@ class Ui_AggiungiPrenotazione(object):
                 self.identificatoreUtilizzatore = 0
 
                 self.retranslateUi(AggiungiPrenotazione)
-                QtCore.QMetaObject.connectSlotsByName(AggiungiPrenotazione)    //Cerca ricorsivamente tutti gli oggetti derivanti dall'oggetto dato e collega i segnali corrispondenti da loro agli slot dell'oggetto AggiungiPrenotazione
+                QtCore.QMetaObject.connectSlotsByName(AggiungiPrenotazione)  //carica i dati nella tabella
 
         def retranslateUi(self, AggiungiPrenotazione):
                 _translate = QtCore.QCoreApplication.translate
