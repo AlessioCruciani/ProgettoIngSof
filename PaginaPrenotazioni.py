@@ -138,6 +138,7 @@ class Ui_PaginaPrenotazioni(object):
 
             rigaTabella += 1
 
+            //PASSA I DATI DI UNA PRENOTAZIONE (NOME CLIENTE, COGNOME CLIENTE, ID PRENOTAZIONE) SOTTO RICHIESTA DELL'UTENTE NEL DATABASE 
     def cercaDatiPrenotazione(self):
         richiesta = self.lineEdit.text()
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
