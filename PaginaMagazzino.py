@@ -76,13 +76,13 @@ class Ui_PaginaMagazzino(object):
 "text-align: center;")
         self.lineEdit.setObjectName("lineEdit")
 
-        self.TableMagazzino.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.TableMagazzino.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)   //serve per non modificare i campi di una tabella 
 
         self.caricaDatiMagazzino()
         self.ButtonCerca.clicked.connect(self.cercaDatiMagazzino)
 
         self.retranslateUi(PaginaMagazzino)
-        QtCore.QMetaObject.connectSlotsByName(PaginaMagazzino)
+        QtCore.QMetaObject.connectSlotsByName(PaginaMagazzino)    //carica i dati nella tabella
 
     def caricaDatiMagazzino(self):
         mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
