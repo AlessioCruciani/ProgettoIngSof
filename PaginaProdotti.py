@@ -170,7 +170,7 @@ class Ui_PaginaProdotti(object):
     def setIdentificatoreUtilizzatore(self, codiceUtilizzatore):
         self.IdentificatoreUtilizzatore = codiceUtilizzatore
 
-        //VISUALIZZA I PERMESSI DELL'UTILIZZATORE E LI SETTA AL LIVELLO MEDIO O ALTO
+        //VISUALIZZA I PERMESSI DELL'UTILIZZATORE E LI CONTROLLA (A SECONDA DEL LIVELLO PUò AGIRE O MENO SULLE INFORMAZIONI DEI PRODOTTI)
     def controllaPermessiUtilizzatore(self):
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
