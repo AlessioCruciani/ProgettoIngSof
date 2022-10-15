@@ -372,7 +372,7 @@ class Ui_PaginaAggiungiScontrini(object): // serve a settare la pagina
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()
 
-        if self.lECodiceFidelity.text() != '':
+        if self.lECodiceFidelity.text() != '': //attribuisce il saldo cashback alla fidelity card
             querySaldoCashback = "SELECT fidelitycard.SaldoCashback FROM fidelitycard WHERE fidelitycard.IDFidelityCard = '" + self.lECodiceFidelity.text() + "'"
             mycursor.execute(querySaldoCashback)
             risultatoQuerySaldoCashback = mycursor.fetchall()
