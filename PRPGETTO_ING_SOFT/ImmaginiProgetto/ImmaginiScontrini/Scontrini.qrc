@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="scontrini">
+    <file>ButtonAnnullaScontrini.png</file>
+    <file>ButtonConfermaScontrini.png</file>
+    <file>SfondoAggiungiScontrini.png</file>
+    <file>ButtonAggiungiScontrini.png</file>
+    <file>ButtonCercaScontrini.png</file>
+    <file>ButtonHome.png</file>
+    <file>SfondoScontrini.png</file>
+  </qresource>
+</RCC>

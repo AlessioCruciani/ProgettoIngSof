@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="prodotto">
+    <file>SfondoAggiungiSconto.png</file>
+    <file>ButtonAggiungiSconti.png</file>
+    <file>ButtonCercaProdotti.png</file>
+    <file>ButtonHome.png</file>
+    <file>SfondoProdotti.png</file>
+  </qresource>
+</RCC>
