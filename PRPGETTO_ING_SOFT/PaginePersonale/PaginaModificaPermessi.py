@@ -103,7 +103,7 @@ class Ui_PaginaModificaPermessi(object):
                                              "color: #20730b;")
         self.labelDNMcodiceDip.setObjectName("labelDNMcodiceDip")
 
-        self.ButtonConfermaModifica.clicked.connect(self.aggiornaPermessiDipendenti)
+        #self.ButtonConfermaModifica.clicked.connect(self.aggiornaPermessiDipendenti)
         self.comboBoxPernessi.addItems(['low', 'medium', 'high'])
 
         self.retranslateUi(PaginaModificaPermessi)
@@ -115,6 +115,26 @@ class Ui_PaginaModificaPermessi(object):
         self.labelDNMpermessi.setText(_translate("PaginaModificaStatoOrdini", "INSERISCI IL LIVELLO DI PERMESSI DA ASSEGNARE:"))
         self.labelDNMstipendio.setText(_translate("PaginaModificaStatoOrdini", "INSERISCI L\'IMPORTO DELLO STIPENDIO DA ATTRIBUIRE AL DIPENDENTE:"))
         self.labelDNMcodiceDip.setText(_translate("PaginaModificaStatoOrdini", "INSERISCI IL CODICE DEL DIPENDENTE DA PROMUOVERE:"))
+
+    def controllaCodicePersonale(self):
+        mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
+        mycursor = mydb.cursor()
+
+        codicePersonale = self.lECodiceDipendente.text()
+
+        queryRicercaPersonale = "SELECT utilizzatore.IDUtilizzatore FROM utilizzatore WHERE utilizzatore.IDUtilizzatore = '" + str(codicePersonale) + "'"
+        mycursor.execute(queryRicercaPersonale)
+        risultatoRicercaPersonale = mycursor.fetchall()
+
+        codicePersonaleEsistente = None
+
+        for row in risultatoRicercaPersonale:
+            codicePersonaleEsistente = row[0]
+
+        if codicePersonaleEsistente != None:
+            return 1
+        else:
+            return 0
 
     def aggiornaPermessiDipendenti(self):
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")

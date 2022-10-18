@@ -110,6 +110,26 @@ class Ui_AggiungiEsito(object):
         _translate = QtCore.QCoreApplication.translate
         AggiungiPrenotazione.setWindowTitle(_translate("AggiungiPrenotazione", "Form"))
 
+    def controllaCodicePrenotazione(self):
+        mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
+        mycursor = mydb.cursor()
+
+        codicePrenotazione = self.lineEditCodicePrenotazione.text()
+
+        queryRicercaPrenotazione = "SELECT prenotazioni.IDPrenotazioni FROM prenotazioni WHERE prenotazioni.IDPrenotazioni = '" + str(codicePrenotazione) + "'"
+        mycursor.execute(queryRicercaPrenotazione)
+        risultatoRicercaPrenotazione = mycursor.fetchall()
+
+        codicePrenotazioneEsistente = None
+
+        for row in risultatoRicercaPrenotazione:
+            codicePrenotazioneEsistente = row[0]
+
+        if codicePrenotazioneEsistente != None:
+            return 1
+        else:
+            return 0
+
     def creaNuovoEsito(self):
         codiceprenotazione = self.lineEditCodicePrenotazione.text()
         codicefiscale = self.lineEditCF.text()

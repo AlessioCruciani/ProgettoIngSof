@@ -58,8 +58,19 @@ class Ui_PaginaPrenotazioni(object):
                                                       "border-color: #20730b;")
         self.ButtonAggiungiPrenotazioni.setText("")
         self.ButtonAggiungiPrenotazioni.setObjectName("ButtonAggiungiScontrini")
+
+        self.ButtonRimuoviPrenotazioni = QtWidgets.QPushButton(PaginaPrenotazioni)
+        self.ButtonRimuoviPrenotazioni.setGeometry(QtCore.QRect(60, 520, 220, 40))
+        self.ButtonRimuoviPrenotazioni.setStyleSheet("background-position: center;\n"
+                                                      "background-image: url(ImmaginiProgetto/ImmaginiPrenotazioni/ButtonRimuoviPrenotazioni.png);\n"
+                                                      "border: 2px solid black;\n"
+                                                      "border-radius: 10px;\n"
+                                                      "border-color: #20730b;")
+        self.ButtonRimuoviPrenotazioni.setText("")
+        self.ButtonRimuoviPrenotazioni.setObjectName("ButtonRimuoviPrenotazioni")
+
         self.ButtonAggiungiEsito = QtWidgets.QPushButton(PaginaPrenotazioni)
-        self.ButtonAggiungiEsito.setGeometry(QtCore.QRect(300, 470, 221, 40))
+        self.ButtonAggiungiEsito.setGeometry(QtCore.QRect(300, 470, 220, 40))
         self.ButtonAggiungiEsito.setStyleSheet("background-position: center;\n"
                                                       "background-image: url(ImmaginiProgetto/ImmaginiPrenotazioni/ButtonAggiungiEsito.png);\n"
                                                       "border: 2px solid black;\n"
@@ -67,6 +78,17 @@ class Ui_PaginaPrenotazioni(object):
                                                       "border-color: #20730b;")
         self.ButtonAggiungiEsito.setText("")
         self.ButtonAggiungiEsito.setObjectName("ButtonAggiungiEsito")
+
+        self.ButtonModificaPrenotazioni = QtWidgets.QPushButton(PaginaPrenotazioni)
+        self.ButtonModificaPrenotazioni.setGeometry(QtCore.QRect(300, 520, 220, 40))
+        self.ButtonModificaPrenotazioni.setStyleSheet("background-position: center;\n"
+                                               "background-image: url(ImmaginiProgetto/ImmaginiPrenotazioni/ButtonModificaPrenotazioni.png);\n"
+                                               "border: 2px solid black;\n"
+                                               "border-radius: 10px;\n"
+                                               "border-color: #20730b;")
+        self.ButtonModificaPrenotazioni.setText("")
+        self.ButtonModificaPrenotazioni.setObjectName("ButtonModificaPrenotazioni")
+
         self.ButtonCercaPrenotazioni = QtWidgets.QPushButton(PaginaPrenotazioni)
         self.ButtonCercaPrenotazioni.setGeometry(QtCore.QRect(500, 160, 220, 40))
         self.ButtonCercaPrenotazioni.setStyleSheet("background-position: center;\n"

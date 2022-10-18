@@ -1,7 +1,12 @@
+import sys
+
 import mysql.connector
 from PyQt5.QtWidgets import QApplication, QWidget
 
 from LoginFinito import Ui_Login
+from PaginaErroreCodiceOrdine import Ui_ErroreCodiceOrdine
+from PaginaErroreCodicePersonale import Ui_ErroreCodicePersonale
+from PaginaErroreCodicePrenotazione import Ui_ErroreCodicePrenotazione
 from PaginePersonale.PaginaAggiungiPersonale import Ui_AggiungiPersonale
 from PaginePrenotazioni.PaginaAggiungiPrenotazioni import Ui_AggiungiPrenotazione
 from PagineMagazzino.PaginaAggiungiSconti import Ui_PaginaAggiungiSconti
@@ -14,8 +19,10 @@ from PagineOrdine.PaginaOrdini import Ui_PaginaOrdini
 from PaginePersonale.PaginaPersonale import Ui_PaginaPersonale
 from PagineOrdine.PaginaAggiungiOrdine import Ui_PaginaAggiungiOrdini
 from PagineOrdine.PaginaModificaStatoOrdine import Ui_PaginaModificaStatoOrdini
+from PaginePrenotazioni.PaginaModificaPrenotazioni import Ui_ModificaPrenotazione
 from PaginePrenotazioni.PaginaPrenotazioni import Ui_PaginaPrenotazioni
 from PaginePersonale.PaginaRimuoviPersonale import Ui_PaginaRimuoviDipendenti
+from PaginePrenotazioni.PaginaRimuoviPrenotazione import Ui_PaginaRimuoviPrenotazione
 from PagineScontrini.PaginaScontrini import Ui_PaginaScontrini
 from PagineScontrini.PaginaAggiungiScontrino import Ui_PaginaAggiungiScontrini
 from PagineMagazzino.PaginaProdotti import Ui_PaginaProdotti
@@ -23,6 +30,8 @@ from PagineMagazzino.PaginaStatistiche import Ui_Statistiche
 from PaginePersonale.PaginaModificaPermessi import Ui_PaginaModificaPermessi
 from PaginePrenotazioni.PaginaAggiungiEsito import Ui_AggiungiEsito
 from PaginePrenotazioni.PaginaEsiti import Ui_PaginaEsiti
+from PaginaErroreSconto import Ui_ErroreSconto
+
 
 mydb = mysql.connector.connect(host="localhost",user="alessio",password="alessio",database="prova")
 mycursor = mydb.cursor()
@@ -59,6 +68,7 @@ def controlla():
             uiPersonale.setIdentificatoreUtilizzatore(x)
             uiProdotti.setIdentificatoreUtilizzatore(x)
             uiAggiungiPrenotazioni.setIdentificatoreUtilizzatore(x)
+            uiModificaPrenotazione.setIdentificatoreUtilizzatore(x)
 
 
 
@@ -101,6 +111,59 @@ def onClickButtonPrenotazioni():
     uiPrenotazioni.ButtonAggiungiPrenotazioni.clicked.connect(onClickButtonAggiungiPrenotazioni)
     uiPrenotazioni.ButtonAggiungiEsito.clicked.connect(onClickButtonAggiungiEsito)
     uiPrenotazioni.ButtonEsiti.clicked.connect(onClickButtonEsiti)
+    uiPrenotazioni.ButtonRimuoviPrenotazioni.clicked.connect(onClickButtonRimuoviPrenotazioni)
+    uiPrenotazioni.ButtonModificaPrenotazioni.clicked.connect(onClickButtonModificaPrenotazioni)
+
+def onClickButtonModificaPrenotazioni():
+    finestraPrenotazioni.hide()
+    finestraModificaPrenotazione.show()
+    uiModificaPrenotazione.ButtonConferma.clicked.connect(onClickButtonConfermaModificaPrenotazione)
+    uiModificaPrenotazione.ButtonAnnulla.clicked.connect(onClickButtonAnnullaModificaPrenotazione)
+
+def onClickButtonAnnullaModificaPrenotazione():
+    finestraModificaPrenotazione.hide()
+    finestraPrenotazioni.show()
+
+def onClickButtonConfermaModificaPrenotazione():
+    if uiModificaPrenotazione.controllaCodicePrenotazione():
+        uiModificaPrenotazione.modificaPrenotazione()
+        uiPrenotazioni.caricaDatiPrenotazioni()
+        finestraModificaPrenotazione.hide()
+        finestraPrenotazioni.show()
+    else:
+        finestraModificaPrenotazione.hide()
+        finestraErroreCodicePrenotazione.show()
+        uiErroreCodicePrenotazione.ButtonIndietro.clicked.connect(onClickButtonIndietroErroreCodicePrenotazioneModifica)
+
+def onClickButtonIndietroErroreCodicePrenotazioneModifica():
+    finestraErroreCodicePrenotazione.hide()
+    finestraModificaPrenotazione.show()
+
+def onClickButtonRimuoviPrenotazioni():
+    finestraPrenotazioni.hide()
+    finestraRimuoviPrenotazione.show()
+    uiRimuoviPrenotazione.ButtonConferma.clicked.connect(onClickButtonConfermaRimozionePrenotazione)
+    uiRimuoviPrenotazione.ButtonAnnulla.clicked.connect(onClickButtonAnnullaRimozionePrenotazione)
+
+def onClickButtonAnnullaRimozionePrenotazione():
+    finestraRimuoviPrenotazione.hide()
+    finestraPrenotazioni.show()
+
+def onClickButtonConfermaRimozionePrenotazione():
+    if uiRimuoviPrenotazione.controllaCodicePrenotazione():
+        uiRimuoviPrenotazione.rimuoviPrenotazione()
+        uiPrenotazioni.caricaDatiPrenotazioni()
+        finestraRimuoviPrenotazione.hide()
+        finestraPrenotazioni.show()
+    else:
+        finestraRimuoviPrenotazione.hide()
+        finestraErroreCodicePrenotazione.show()
+        uiErroreCodicePrenotazione.ButtonIndietro.clicked.connect(onClickButtonIndietroErroreCodicePrenotazioneRimuovi)
+
+def onClickButtonIndietroErroreCodicePrenotazioneRimuovi():
+    finestraErroreCodicePrenotazione.hide()
+    finestraRimuoviPrenotazione.show()
+
 
 def onClickButtonEsiti():
     finestraPrenotazioni.hide()
@@ -118,10 +181,19 @@ def onClickButtonAggiungiEsito():
     uiAggiungiEsito.ButtonAnnulla.clicked.connect(onClickButtonAnnullaEsito)
 
 def onClickButtonConfermaEsito():
-    uiAggiungiEsito.creaNuovoEsito()
-    finestraAggiungiEsito.hide()
-    uiPrenotazioni.caricaDatiPrenotazioni()
-    finestraPrenotazioni.show()
+    if uiAggiungiEsito.controllaCodicePrenotazione():
+        uiAggiungiEsito.creaNuovoEsito()
+        finestraAggiungiEsito.hide()
+        uiPrenotazioni.caricaDatiPrenotazioni()
+        finestraPrenotazioni.show()
+    else:
+        finestraAggiungiEsito.hide()
+        finestraErroreCodicePrenotazione.show()
+        uiErroreCodicePrenotazione.ButtonIndietro.clicked.connect(onClickButtonIndietroErroreCodicePrenotazione)
+
+def onClickButtonIndietroErroreCodicePrenotazione():
+    finestraErroreCodicePrenotazione.hide()
+    finestraAggiungiEsito.show()
 
 def onClickButtonAnnullaEsito():
     finestraAggiungiEsito.hide()
@@ -173,9 +245,19 @@ def onClickButtonAnnullaSconto():
     finestraProdotti.show()
 
 def onClickButtonConfermaSconto():
-    uiAggiungiSconti.creaSconto()
-    finestraAggiungiSconti.hide()
-    finestraProdotti.show()
+    if uiAggiungiSconti.controllaCodiceProdotto():
+        uiAggiungiSconti.creaSconto()
+        finestraAggiungiSconti.hide()
+        finestraProdotti.show()
+    else:
+        finestraErroreCodiceProdotto.show()
+        finestraAggiungiSconti.hide()
+        uiErroreCodiceProdotto.ButtonIndietro.clicked.connect(onClickButtonIndietroErroreCodice)
+
+def onClickButtonIndietroErroreCodice():
+    finestraErroreCodiceProdotto.hide()
+    finestraAggiungiSconti.show()
+
 
 def onClickButtonHomeProdotti():
     finestraProdotti.hide()
@@ -211,9 +293,19 @@ def onClickButtonModificaPermessi():
     uiModificaPermessi.ButtonAnnullaModifica.clicked.connect(onClickButtonAnnullaModificaPermessi)
 
 def onClickButtonConfermaModificaPermessi():
-    finestraModificaPermessi.hide()
-    uiPersonale.caricaDatiPersonale()
-    finestraPersonale.show()
+    if uiModificaPermessi.controllaCodicePersonale():
+        uiModificaPermessi.aggiornaPermessiDipendenti()
+        finestraModificaPermessi.hide()
+        uiPersonale.caricaDatiPersonale()
+        finestraPersonale.show()
+    else:
+        finestraModificaPermessi.hide()
+        finestraErroreCodicePersonale.show()
+        uiErroreCodicePersonale.ButtonIndietro.clicked.connect(onClickButtonIndietroErroreCodicePersonalePermessi)
+
+def onClickButtonIndietroErroreCodicePersonalePermessi():
+    finestraErroreCodicePersonale.hide()
+    finestraModificaPermessi.show()
 
 def onClickButtonAnnullaModificaPermessi():
     finestraModificaPermessi.hide()
@@ -231,10 +323,19 @@ def onClickButtonAnnullaRimozionePersonale():
     finestraPersonale.show()
 
 def onClickButtonConfermaRimozionePersonale():
-    uiRimuoviPersonale.rimuoviPersonale()
-    uiPersonale.caricaDatiPersonale()
-    finestraRimuoviPersonale.hide()
-    finestraPersonale.show()
+    if uiRimuoviPersonale.controllaCodicePersonale():
+        uiRimuoviPersonale.rimuoviPersonale()
+        uiPersonale.caricaDatiPersonale()
+        finestraRimuoviPersonale.hide()
+        finestraPersonale.show()
+    else:
+        finestraRimuoviPersonale.hide()
+        finestraErroreCodicePersonale.show()
+        uiErroreCodicePersonale.ButtonIndietro.clicked.connect(onClickButtonIndietroErroreCodicePersonaleRimuovi)
+
+def onClickButtonIndietroErroreCodicePersonaleRimuovi():
+    finestraErroreCodicePersonale.hide()
+    finestraRimuoviPersonale.show()
 
 def onClickButtonAggiungiPersonale():
     finestraPersonale.hide()
@@ -273,8 +374,17 @@ def onClickButtonHomeFidelity():
 
 def onclickButtonAggiungiFidelity():
     finestraAggiungiFidelityCard.show()
-    uiAggiungiFidelityCard.creaNuovaFidelity()
+    uiAggiungiFidelityCard.ButtonCreaFidelity.clicked.connect(onclickButtonCreaFidelity)
+    uiAggiungiFidelityCard.ButtonAnnullaFidelity.clicked.connect(onclickButtonAnnullaFidelity)
 
+def onclickButtonCreaFidelity():
+    uiAggiungiFidelityCard.creaNuovaFidelity()
+    finestraAggiungiFidelityCard.hide()
+    finestraFidelity.show()
+
+def onclickButtonAnnullaFidelity():
+    finestraAggiungiFidelityCard.hide()
+    finestraFidelity.show()
 
 def onClickButtonOrdini():
     finestraHome.hide()
@@ -294,10 +404,19 @@ def onCLickButtonAnnullaModifiche():
     finestraModificaStatoOrdine.hide()
     finestraOrdini.show()
 def onClickButtonConfermaModifiche():
-    uiModificaStatoOrdine.modificaStatoOrdine()
-    uiOrdini.caricaDatiOrdine()
-    finestraModificaStatoOrdine.hide()
-    finestraOrdini.show()
+    if uiModificaStatoOrdine.controllaCodiceOrdine():
+        uiModificaStatoOrdine.modificaStatoOrdine()
+        uiOrdini.caricaDatiOrdine()
+        finestraModificaStatoOrdine.hide()
+        finestraOrdini.show()
+    else:
+        finestraModificaStatoOrdine.hide()
+        finestraErroreCodiceOrdine.show()
+        uiErroreCodiceOrdine.ButtonIndietro.clicked.connect(onClickButtonIndietroErroreCodiceOrdine)
+
+def onClickButtonIndietroErroreCodiceOrdine():
+    finestraErroreCodiceOrdine.hide()
+    finestraModificaStatoOrdine.show()
 
 def onClickButtonAggiungiOrdine():
     uiAggiungiOrdine.creaNuovoOrdine()
@@ -470,8 +589,39 @@ finestraEsiti = QWidget()
 uiEsiti = Ui_PaginaEsiti()
 uiEsiti.setupUi(finestraEsiti)
 
-app.exec_()
-app2.exec_()
+appErroreCodiceProdotto = QApplication([])
+finestraErroreCodiceProdotto = QWidget()
+uiErroreCodiceProdotto = Ui_ErroreSconto()
+uiErroreCodiceProdotto.setupUi(finestraErroreCodiceProdotto)
+
+appErroreCodiceOrdine = QApplication([])
+finestraErroreCodiceOrdine = QWidget()
+uiErroreCodiceOrdine = Ui_ErroreCodiceOrdine()
+uiErroreCodiceOrdine.setupUi(finestraErroreCodiceOrdine)
+
+appErroreCodicePersonale = QApplication([])
+finestraErroreCodicePersonale = QWidget()
+uiErroreCodicePersonale = Ui_ErroreCodicePersonale()
+uiErroreCodicePersonale.setupUi(finestraErroreCodicePersonale)
+
+appErroreCodicePrenotazione = QApplication([])
+finestraErroreCodicePrenotazione = QWidget()
+uiErroreCodicePrenotazione = Ui_ErroreCodicePrenotazione()
+uiErroreCodicePrenotazione.setupUi(finestraErroreCodicePrenotazione)
+
+appRimuoviPrenotazione = QApplication([])
+finestraRimuoviPrenotazione = QWidget()
+uiRimuoviPrenotazione = Ui_PaginaRimuoviPrenotazione()
+uiRimuoviPrenotazione.setupUi(finestraRimuoviPrenotazione)
+
+appModificaPrenotazione = QApplication([])
+finestraModificaPrenotazione = QWidget()
+uiModificaPrenotazione = Ui_ModificaPrenotazione()
+uiModificaPrenotazione.setupUi(finestraModificaPrenotazione)
+
+sys.exit(app.exec_())
+sys.exit(app2.exec_())
+
 app3.exec_()
 appAggiungiFidelity.exec_()
 appOrdini.exec_()
@@ -486,3 +636,4 @@ appProdotti.exec_()
 appAggiungiSconti.exec_()
 appPrenotazioni.exec_()
 appAggiungiPrenotazioni.exec_()
+appErroreCodiceProdotto.exec_()

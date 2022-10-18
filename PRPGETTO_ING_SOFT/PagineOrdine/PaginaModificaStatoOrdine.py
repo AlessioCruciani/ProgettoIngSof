@@ -67,6 +67,26 @@ class Ui_PaginaModificaStatoOrdini(object):
         PaginaModificaStatoOrdini.setWindowTitle(_translate("PaginaModificaStatoOrdini", "Form"))
         self.labelDNM.setText(_translate("PaginaModificaStatoOrdini", "INSERISCI IL CODICE DELL\'ORDINE DI CUI MODIFICARE LO STATO:"))
 
+    def controllaCodiceOrdine(self):
+        mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
+        mycursor = mydb.cursor()
+
+        codiceOrdine = self.lECodiceOrdine.text()
+
+        queryRicercaOrdine = "SELECT ordine.IDOrdine FROM ordine WHERE ordine.IDOrdine = '" + str(codiceOrdine) + "'"
+        mycursor.execute(queryRicercaOrdine)
+        risultatoRicercaOrdine = mycursor.fetchall()
+
+        codiceOrdineEsistente = None
+
+        for row in risultatoRicercaOrdine:
+            codiceOrdineEsistente = row[0]
+
+        if codiceOrdineEsistente != None:
+            return 1
+        else:
+            return 0
+
     def modificaStatoOrdine(self):
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
         mycursor = mydb.cursor()

@@ -10,6 +10,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import mysql.connector
+from PyQt5.QtWidgets import QApplication, QWidget
+
+import PaginaErroreSconto
+from PaginaErroreSconto import Ui_ErroreSconto
+
 
 class Ui_PaginaAggiungiSconti(object):
     def setupUi(self, PaginaAggiungiSconti):
@@ -84,11 +89,38 @@ class Ui_PaginaAggiungiSconti(object):
         self.retranslateUi(PaginaAggiungiSconti)
         QtCore.QMetaObject.connectSlotsByName(PaginaAggiungiSconti)
 
+
+
     def retranslateUi(self, PaginaAggiungiSconti):
         _translate = QtCore.QCoreApplication.translate
         PaginaAggiungiSconti.setWindowTitle(_translate("PaginaAggiungiSconti", "Form"))
         self.labelDNMcodiceProdotto.setText(_translate("PaginaAggiungiSconti", "CODICE PRODOTTO"))
         self.labelDNM_2.setText(_translate("PaginaAggiungiSconti", "PERCENTUALE SCONTO"))
+
+    def controllaCodiceProdotto(self):
+
+
+        mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
+        mycursor = mydb.cursor()
+
+        codiceProdotto = self.lECodiceProdotto.text()
+
+        queryRicercaProdotto = "SELECT prodotto.IDProdotto FROM prodotto WHERE prodotto.IDProdotto = '" + str(codiceProdotto) + "'"
+        mycursor.execute(queryRicercaProdotto)
+        risultatoRicercaProdotto = mycursor.fetchall()
+
+        codiceProdottoEsistente = None
+
+        for row in risultatoRicercaProdotto:
+            codiceProdottoEsistente = row[0]
+
+        if codiceProdottoEsistente != None:
+            return 1
+        else:
+            return 0
+
+
+
 
     def creaSconto(self):
         mydb = mysql.connector.connect(host="localhost", user="alessio", password="alessio", database="prova")
@@ -140,4 +172,7 @@ if __name__ == "__main__":
     ui = Ui_PaginaAggiungiSconti()
     ui.setupUi(PaginaAggiungiSconti)
     PaginaAggiungiSconti.show()
+
+
+
     sys.exit(app.exec_())

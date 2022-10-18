@@ -224,17 +224,12 @@ class Canvas_graficaBilancio(FigureCanvas):
                     valoreAcquisti = row[0]
 
             trentaValori.append(valoreVendite-valoreAcquisti)
-
         return trentaValori
 
     """def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
         super(Canvas_graficaBilancio, self).__init__(fig)"""
-
-
-
-
 
 if __name__ == "__main__":
     import sys
