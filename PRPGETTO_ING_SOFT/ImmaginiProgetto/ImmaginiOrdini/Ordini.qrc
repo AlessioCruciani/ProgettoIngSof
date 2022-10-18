@@ -1,0 +1,38 @@
+<RCC>
+  <qresource prefix="prova">
+    <file>ButtonDipendenti.png</file>
+    <file>ButtonFidelity.png</file>
+    <file>ButtonOrdini.png</file>
+    <file>ButtonPrenotazioni.png</file>
+    <file>ButtonScontrini.png</file>
+    <file>SfondoHomePage.png</file>
+    <file>ButtonHome.png</file>
+    <file>ButtonMagazzino.png</file>
+  </qresource>
+  <qresource prefix="ordini">
+    <file>ButtonAnnullaModifica.png</file>
+    <file>ButtonConfermaModifica.png</file>
+    <file>SfondoModificaStatoOrdine.png</file>
+    <file>ButtonAggiungiAlCarrello.png</file>
+    <file>ButtonAnnullaOrdine.png</file>
+    <file>ButtonConfermaOrdine.png</file>
+    <file>SfondoAggiungiOrdine.png</file>
+    <file>ButtonAggiungiOrdini.png</file>
+    <file>ButtonCercaOrdini.png</file>
+    <file>ButtonModificaStatoOrdini.png</file>
+    <file>SfondoPaginaOrdini.png</file>
+    <file>Ordini.qrc</file>
+  </qresource>
+  <qresource prefix="fidelity">
+    <file>LableIDUtilizzatore.png</file>
+    <file>TelefonoFidelity.png</file>
+    <file>EmailFidelity.png</file>
+    <file>CognomeFidelity.png</file>
+    <file>NomeFidelity.png</file>
+    <file>SfondoAggiungiFidelity.png</file>
+    <file>ButtonCercaFidelity.png</file>
+    <file>ButtonHome.png</file>
+    <file>ButtonAggiungiFidelity.png</file>
+    <file>SfondoFidelityPage.png</file>
+  </qresource>
+</RCC>

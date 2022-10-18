@@ -1,0 +1,18 @@
+<RCC>
+  <qresource prefix="personale">
+    <file>SfondoModificaPermessi.png</file>
+    <file>ButtonAnnullaModifica.png</file>
+    <file>ButtonConfermaModifica.png</file>
+    <file>SfondoRimuoviPersonale.png</file>
+    <file>ButtonAnnullaInserimento.png</file>
+    <file>ButtonConfermaInserimento.png</file>
+    <file>labelCodiceFiscale.png</file>
+    <file>labelDataNascita.png</file>
+    <file>labelPassword.png</file>
+    <file>labelStipendio.png</file>
+    <file>SfondoAggiungiPersonale.png</file>
+    <file>ButtonAggiungiPersonale.png</file>
+    <file>ButtonCercaPersonale.png</file>
+    <file>SfondoPersonale.png</file>
+  </qresource>
+</RCC>

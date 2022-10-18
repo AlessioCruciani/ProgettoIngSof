@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="errore">
+    <file>ButtonIndietro.png</file>
+  </qresource>
+</RCC>

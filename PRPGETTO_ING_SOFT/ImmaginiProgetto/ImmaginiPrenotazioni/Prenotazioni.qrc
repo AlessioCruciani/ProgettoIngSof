@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="prenotazioni">
+    <file>CognomeFidelity.png</file>
+    <file>EmailFidelity.png</file>
+    <file>labelData.png</file>
+    <file>labelOrario.png</file>
+    <file>NomeFidelity.png</file>
+    <file>ButtonAggiungiPrenotazioni.png</file>
+    <file>ButtonAnnullaPrenotazioni.png</file>
+    <file>ButtonCercaPrenotazioni.png</file>
+    <file>ButtonConfermaPrenotazioni.png</file>
+    <file>ButtonHome.png</file>
+    <file>SfondoAggiungiPrenotazioni.png</file>
+    <file>SfondoPrenotazioni.png</file>
+  </qresource>
+</RCC>

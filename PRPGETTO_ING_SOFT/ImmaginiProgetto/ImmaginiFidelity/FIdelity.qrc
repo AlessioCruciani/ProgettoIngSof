@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="prova">
+    <file>ButtonDipendenti.png</file>
+    <file>ButtonFidelity.png</file>
+    <file>ButtonOrdini.png</file>
+    <file>ButtonPrenotazioni.png</file>
+    <file>ButtonScontrini.png</file>
+    <file>SfondoHomePage.png</file>
+    <file>ButtonHome.png</file>
+    <file>ButtonMagazzino.png</file>
+  </qresource>
+  <qresource prefix="fidelity">
+    <file>LableIDUtilizzatore.png</file>
+    <file>TelefonoFidelity.png</file>
+    <file>EmailFidelity.png</file>
+    <file>CognomeFidelity.png</file>
+    <file>NomeFidelity.png</file>
+    <file>SfondoAggiungiFidelity.png</file>
+    <file>ButtonCercaFidelity.png</file>
+    <file>ButtonHome.png</file>
+    <file>ButtonAggiungiFidelity.png</file>
+    <file>SfondoFidelityPage.png</file>
+  </qresource>
+</RCC>

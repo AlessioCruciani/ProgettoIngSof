@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="Magazzino">
+    <file>ButtonCercaProdotti.png</file>
+    <file>ButtonHome.png</file>
+    <file>SfondoMagazzino.png</file>
+  </qresource>
+</RCC>
